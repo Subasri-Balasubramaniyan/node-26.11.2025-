@@ -1,0 +1,61 @@
+#%RAML 1.0
+title: Student API
+version: v1
+baseUri: http://localhost:3000/api/{version}
+
+types:
+  Student:
+    type: object
+    properties:
+      id: number
+      name: string
+      age: number
+
+/students:
+  get:
+    description: Get all students
+    responses:
+      200:
+        body:
+          application/json:
+            type: Student[]
+
+  post:
+    description: Create a new student
+    body:
+      application/json:
+        type: Student
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              id: 1
+              name: "Suba"
+              age: 21
+
+/students/{id}:
+  get:
+    description: Get a student by ID
+    responses:
+      200:
+        body:
+          application/json:
+            type: Student
+
+  put:
+    description: Update a student
+    body:
+      application/json:
+        type: Student
+    responses:
+      200:
+        body:
+          application/json:
+            type: Student
+
+  delete:
+    description: Delete a student
+    responses:
+      204:
+        description: Student deleted successfully
